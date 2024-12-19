@@ -164,6 +164,45 @@ def update_message(message):
     myWindow.update_idletasks()  # 强制更新GUI
 
 
+def export_file_cli(excel_path, export_dir):
+    """命令行模式导出文件"""
+    try:
+        global SELECT_FILES_PATH, EXPORT_FILES_PATH
+        SELECT_FILES_PATH = (excel_path,)  # 注意这里需要是元组
+        EXPORT_FILES_PATH = export_dir
+        
+        # 获取导出格式（从环境变量或默认值）
+        export_format = os.environ.get('EXPORT_FORMAT', 'both')
+        
+        if export_format in ['json', 'both']:
+            # 客户端参数设置（JSON）
+            ctext = Context()
+            ctext.path = SELECT_FILES_PATH
+            ctext.folder = EXPORT_FILES_PATH + '/client'
+            ctext.format = 'json'
+            ctext.sign = 'c'
+            ctext.extension = ''
+            ctext.objseparator = ','
+            ctext.codegenerator = None
+            ctext.multiprocessescount = 1
+            exportfiles(ctext)
+
+        if export_format in ['csv', 'both']:
+            # 服务端参数设置（CSV）
+            stext = Context()
+            stext.path = SELECT_FILES_PATH
+            stext.folder = EXPORT_FILES_PATH + '/server'
+            stext.format = 'csv'
+            stext.sign = 's'
+            exportfilescsv(stext)
+
+        print("导出成功!")
+        return True
+    except Exception as e:
+        print(f"导出失败，错误信息：{str(e)}")
+        return False
+
+
 def main():
     global message_text, myWindow, text, export_lb
     try:
@@ -233,4 +272,12 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    # 检查是否通过环境变量传入了参数
+    excel_path = os.environ.get('EXCEL_PATH')
+    if excel_path:
+        # 命令行模式
+        export_dir = os.path.dirname(excel_path)
+        export_file_cli(excel_path, export_dir)
+    else:
+        # GUI模式
+        main()
