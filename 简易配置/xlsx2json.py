@@ -4,6 +4,19 @@ import tkinter as tk
 from tkinter import filedialog, Listbox, END
 from openpyxl import load_workbook
 
+def get_venv_python():
+    """获取虚拟环境的Python解释器路径"""
+    current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    venv_paths = [
+        os.path.join(current_dir, "excel2json_env", "bin", "python"),  # Unix-like systems
+        os.path.join(current_dir, "excel2json_env", "Scripts", "python.exe"),  # Windows
+    ]
+    
+    for path in venv_paths:
+        if os.path.exists(path):
+            return path
+    return None
+
 def preprocess_data(value):
     if value == "null":
         return None
@@ -93,13 +106,15 @@ def xlsx_to_json(file_path):
         return f"发生错误：{e}"
 
 def load_last_path():
-    if os.path.exists('last_path.json'):
-        with open('last_path.json', 'r') as file:
+    last_path_file = os.path.join(os.path.dirname(__file__), 'last_path.json')
+    if os.path.exists(last_path_file):
+        with open(last_path_file, 'r') as file:
             return json.load(file).get('last_path', '')
     return ''
 
 def save_last_path(path):
-    with open('last_path.json', 'w') as file:
+    last_path_file = os.path.join(os.path.dirname(__file__), 'last_path.json')
+    with open(last_path_file, 'w') as file:
         json.dump({'last_path': path}, file)
 
 def select_files():

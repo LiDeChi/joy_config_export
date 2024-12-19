@@ -6,12 +6,12 @@ import tkinter as tk
 from tkinter import ttk, filedialog
 from datetime import datetime
 
-HISTORY_CONFIG = os.path.join(os.path.dirname(os.path.abspath(__file__)), "history_config.json")
+HISTORY_CONFIG = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "history_config.json")
 MAX_HISTORY = 10
 
 def get_excel2json_python():
     """获取excel2json环境的Python解释器路径"""
-    current_dir = os.path.dirname(os.path.abspath(__file__))
+    current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # 修改为获取父目录
     venv_paths = [
         os.path.join(current_dir, "excel2json_env", "bin", "python"),  # Unix-like systems
         os.path.join(current_dir, "excel2json_env", "Scripts", "python.exe"),  # Windows
@@ -29,7 +29,7 @@ def process_excel_file(excel_path):
         export_dir = os.path.dirname(excel_path)
         
         # 获取startui.py的路径
-        current_dir = os.path.dirname(os.path.abspath(__file__))
+        current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         startui_path = os.path.join(current_dir, "配置表转换器", "Excel2JsonCsv", "startui.py")
         
         # 使用excel2json_env的Python来运行startui.py
@@ -161,7 +161,7 @@ def main():
                 export_paths = process_excel_file(file_path)
                 if export_paths:
                     # 合并JSON文件
-                    merge_script_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 
+                    merge_script_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
                                                    "配置表转换器", "Json2Json", 
                                                    "合并Json(记得修改版本号).py")
                     if merge_json_files(export_paths, merge_script_path):
