@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鱼线路编辑器</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="editor-container">
+            <canvas id="editor"></canvas>
+            <div class="base-size-marker"></div>
+        </div>
+        
+        <div class="controls">
+            <button id="toggleSize">切换全屏/半屏</button>
+            <button id="addPoints">添加点</button>
+            <button id="removePoints">删除点</button>
+            <button id="updatePath">更新路线</button>
+            <button id="playAnimation">播放</button>
+            <button id="pauseAnimation">暂停</button>
+            <button id="resetAnimation">重置</button>
+            <input type="file" id="fishIcon" accept="image/*">
+        </div>
+        
+        <div class="coordinates">
+            <textarea id="coordinatesText" placeholder="输入坐标数据..."></textarea>
+        </div>
+        
+        <div class="favorite-controls">
+            <div class="favorite-input">
+                <input type="text" id="pathName" placeholder="输入路线名称">
+                <button id="saveFavorite">收藏当前路线</button>
+            </div>
+            <div id="favoriteList" class="favorite-list"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

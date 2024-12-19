@@ -1,0 +1,137 @@
+[
+  {
+    "level": 1,
+    "name": "基础炮",
+    "gunRes": "gun_01",
+    "fireRes": 101,
+    "fireOffset": [
+      [
+        0,
+        0
+      ]
+    ],
+    "bulletRes": "bullet_1_01",
+    "netRes": 201,
+    "fireInterval": 200
+  },
+  {
+    "level": 5,
+    "name": "红鲨巨炮",
+    "gunRes": "gun_02",
+    "fireRes": 102,
+    "fireOffset": [
+      [
+        0,
+        0
+      ]
+    ],
+    "bulletRes": "bullet_1_02",
+    "netRes": 202,
+    "fireInterval": 200
+  },
+  {
+    "level": 10,
+    "name": "红鲨巨炮",
+    "gunRes": "gun_03",
+    "fireRes": 103,
+    "fireOffset": [
+      [
+        0,
+        0
+      ]
+    ],
+    "bulletRes": "bullet_1_03",
+    "netRes": 203,
+    "fireInterval": 200
+  },
+  {
+    "level": 50,
+    "name": "王者荣耀",
+    "gunRes": "gun_04",
+    "fireRes": 104,
+    "fireOffset": [
+      [
+        0,
+        0
+      ]
+    ],
+    "bulletRes": "bullet_1_04",
+    "netRes": 204,
+    "fireInterval": 200
+  },
+  {
+    "level": 100,
+    "name": "水晶炮",
+    "gunRes": "gun_05",
+    "fireRes": 105,
+    "fireOffset": [
+      [
+        0,
+        0
+      ]
+    ],
+    "bulletRes": "bullet_1_05",
+    "netRes": 205,
+    "fireInterval": 200
+  },
+  {
+    "level": 200,
+    "name": "章鱼大炮",
+    "gunRes": "gun_06",
+    "fireRes": 106,
+    "fireOffset": [
+      [
+        0,
+        0
+      ]
+    ],
+    "bulletRes": "bullet_1_06",
+    "netRes": 206,
+    "fireInterval": 200
+  },
+  {
+    "level": 300,
+    "name": "至尊荣耀",
+    "gunRes": "gun_07",
+    "fireRes": 107,
+    "fireOffset": [
+      [
+        0,
+        0
+      ]
+    ],
+    "bulletRes": "bullet_1_07",
+    "netRes": 207,
+    "fireInterval": 200
+  },
+  {
+    "level": 500,
+    "name": "充能炮",
+    "gunRes": "gun_08",
+    "fireRes": 108,
+    "fireOffset": [
+      [
+        0,
+        0
+      ]
+    ],
+    "bulletRes": "bullet_1_08",
+    "netRes": 208,
+    "fireInterval": 200
+  },
+  {
+    "level": 1000,
+    "name": "极寒炮",
+    "gunRes": "gun_09",
+    "fireRes": 109,
+    "fireOffset": [
+      [
+        0,
+        0
+      ]
+    ],
+    "bulletRes": "bullet_1_09",
+    "netRes": 209,
+    "fireInterval": 200
+  }
+]

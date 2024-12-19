@@ -1,0 +1,109 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+}
+
+.editor-container {
+    position: relative;
+    border: 1px solid #ccc;
+}
+
+canvas {
+    background: #f0f0f0;
+}
+
+.base-size-marker {
+    position: absolute;
+    border: 2px dashed #666;
+    pointer-events: none;
+}
+
+.coordinates {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#coordinatesText {
+    width: 100%;
+    height: 100px;
+    resize: vertical;
+}
+
+button {
+    padding: 8px 16px;
+    cursor: pointer;
+} 
+.favorite-controls {
+    background: #f5f5f5;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+.favorite-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+#pathName {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#saveFavorite {
+    padding: 8px 15px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#saveFavorite:hover {
+    background: #45a049;
+}
+
+.favorite-list {
+    max-height: 200px;
+    overflow-y: auto;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.favorite-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    background: white;
+    margin-bottom: 5px;
+}
+
+.favorite-name {
+    flex: 1;
+}
+
+.favorite-item button {
+    margin-left: 8px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background: white;
+    cursor: pointer;
+}
+
+.favorite-item button:hover {
+    background: #f0f0f0;
+}
