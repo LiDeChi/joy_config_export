@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import ttk, filedialog
 from datetime import datetime
 
-HISTORY_CONFIG = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "history_config.json")
+HISTORY_CONFIG = os.path.join(os.path.dirname(os.path.abspath(__file__)), "history_config.json")
 MAX_HISTORY = 10
 
 def get_excel2json_python():
@@ -29,7 +29,7 @@ def process_excel_file(excel_path):
         export_dir = os.path.dirname(excel_path)
         
         # 获取startui.py的路径
-        current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        current_dir = os.path.dirname(os.path.abspath(__file__))
         startui_path = os.path.join(current_dir, "配置表转换器", "Excel2JsonCsv", "startui.py")
         
         # 使用excel2json_env的Python来运行startui.py
@@ -104,9 +104,15 @@ def merge_json_files(export_paths, merge_script_path):
 
 def load_history():
     """加载历史记录"""
+    print(f"历史记录文件路径: {HISTORY_CONFIG}")
+    print(f"历史记录文件是否存在: {os.path.exists(HISTORY_CONFIG)}")
     if os.path.exists(HISTORY_CONFIG):
         with open(HISTORY_CONFIG, 'r', encoding='utf-8') as f:
-            return json.load(f)
+            content = f.read()
+            print(f"历史记录文件内容: {content}")
+            history = json.loads(content)
+            print(f"解析后的历史记录: {history}")
+            return history
     return {"recent_files": [], "last_updated": ""}
 
 def save_history(file_path):
@@ -145,34 +151,40 @@ def main():
     
     # 加载历史记录
     history = load_history()
+    print("开始加载历史记录...")
+    print(f"历史记录中的文件数量: {len(history['recent_files'])}")
     for file_path in history["recent_files"]:
-        if os.path.exists(file_path):
-            listbox.insert(tk.END, file_path)
+        print(f"检查文件: {file_path}")
+        print(f"文件是否存在: {os.path.exists(file_path)}")
+        listbox.insert(tk.END, file_path)
+    print("历史记录加载完成")
     
     def process_selected_file():
         selection = listbox.curselection()
         if selection:
             file_path = listbox.get(selection[0])
-            if os.path.exists(file_path):
-                status_label.config(text="正在处理文件...")
-                root.update()
-                
-                # 处理Excel文件
-                export_paths = process_excel_file(file_path)
-                if export_paths:
-                    # 合并JSON文件
-                    merge_script_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
-                                                   "配置表转换器", "Json2Json", 
-                                                   "合并Json(记得修改版本号).py")
-                    if merge_json_files(export_paths, merge_script_path):
-                        save_history(file_path)
-                        status_label.config(text=f"处理完成: {os.path.basename(file_path)}")
-                    else:
-                        status_label.config(text="合并文件失败!")
+            print(f"选中文件: {file_path}")
+            print(f"文件是否存在: {os.path.exists(file_path)}")
+            if not os.path.exists(file_path):
+                status_label.config(text=f"文件不存在: {file_path}")
+                return
+            status_label.config(text="正在处理文件...")
+            root.update()
+            
+            # 处理Excel文件
+            export_paths = process_excel_file(file_path)
+            if export_paths:
+                # 合并JSON文件
+                merge_script_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 
+                                               "配置表转换器", "Json2Json", 
+                                               "合并Json(记得修改版本号).py")
+                if merge_json_files(export_paths, merge_script_path):
+                    save_history(file_path)
+                    status_label.config(text=f"处理完成: {os.path.basename(file_path)}")
                 else:
-                    status_label.config(text="处理文件失败!")
+                    status_label.config(text="合并文件失败!")
             else:
-                status_label.config(text="文件不存在!")
+                status_label.config(text="处理文件失败!")
         else:
             status_label.config(text="请先选择一个文件!")
 
